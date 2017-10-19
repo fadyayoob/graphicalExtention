@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+
+  "name": "graphical",
+  "description": "show notifications list from graphical.io ",
+  "version": "1.0",
+   "permissions": ["activeTab","storage"],
+  "browser_action": {
+    "default_icon": "icon/icon128.png",
+    "default_popup": "popup/popup.html"
+  },
+    "background": {
+    "scripts": [ "myscript.js","background.js"]
+  },
+  "icons": {
+    "128": "icon/icon128.png",
+    "64": "icon/icon64.png",
+    "32": "icon/icon32.png",
+    "16": "icon/icon16.png"
+  },
+    "web_accessible_resources": ["icon/refresh.png"],
+    
+  "content_scripts":[
+    {
+      "matches": ["*://*/*"],
+      "css": ["mystyles.css"],
+      "js": ["jq.js", "myscript.js"],
+      "html":["popup.html"],
+	   "all_frames": true
+    }]
+    
+}

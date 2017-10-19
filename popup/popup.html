@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Massages bot</title>
+    <link rel="icon" href="../icon.png">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <script src="../jq.js"></script>
+
+    <script src="../myscript.js"></script>
+
+    <script src="popup.js"></script>
+
+    <style>
+        body {
+            width: 400px;
+            overflow-x:visible;
+        }
+
+        .login{
+            width:80%;
+            margin:auto;
+            text-align:center;
+        }
+
+        .notifications table {
+            text-align: center;
+            width:100%;
+        }
+        .notifications th {
+            text-align: center;
+        }
+        .notifications h5 {
+            text-align: center;
+            
+        }
+        #showmore {
+            cursor: pointer;
+            padding: 15px;
+            color: #333;
+            margin:auto;
+        }
+
+         #logout {
+            cursor: pointer;
+        }
+        #refresh {
+            cursor: pointer;
+        }
+
+        /* Zebra striping */
+        tr:nth-of-type(odd) {
+            background: #eee;
+        }
+
+        th {
+            background: #333;
+            color: white;
+            font-weight: bold;
+        }
+
+        td, th {
+            padding: 6px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        .time{
+            float:right;
+            color:#999;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="login" >
+        <br />
+        <h4>Please compelete login </h4>
+        <h4 style="color:red" id="massage" ></h4>
+
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+            <div class="input-group mb-2 mb-sm-0">
+                <div class="input-group-addon">@</div>
+                <input type="text" class="form-control" id="username" placeholder="Username">
+            </div>
+        </div>
+        <br />
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+            <div class="input-group mb-2 mb-sm-0">
+                <div class="input-group-addon">*</div>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+
+        </div>
+
+        <div class="col-auto" style="float:right; margin:10px; margin-right:0px;">
+            <button type="button" id="Loginbtn" class="btn btn-danger">login</button>
+        </div>
+        <br />
+
+    </div>
+
+    <div class="notifications" >
+        <div style="width:20%; float:right" >
+            <h5 id="logout" style="position:absolute; margin:2px;  margin-top:15px; float:right"  title="Logout" >Logout</h5>
+            <img width="60" id="refresh" style="position:absolute; margin:0; margin-left:30px; float:right" src="../icon/refresh.png" title="refresh" />
+
+        </div>
+        <br />
+        <br />
+        <table></table>
+        <br />
+        <a id="showmore"  title="Show more 5 "  > show more 5 </a>
+    </div>
+   
+
+</body>
+</html>
