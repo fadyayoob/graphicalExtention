@@ -18,8 +18,8 @@
 
     <style>
         html,body {
-            max-height: 400px;
-            overflow-y: scroll;
+            max-height: 600px;
+            /*overflow-y: scroll;*/
         } 
         body {
             width: 400px;
@@ -90,28 +90,30 @@
 
     <div class="login" >
         <br />
-        <h4>Please compelete login </h4>
+        <img height="100px" id="refresh" style="position:relative;  " src="../icon/icon.png" title="refresh" />
+        <br />
+        <h4 style="color: gray">Login</h4>
         <h4 style="color:red" id="massage" ></h4>
-
+        <br />
         <div class="col-auto">
-            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+            <label class="sr-only" for="inlineFormInputGroup">Email</label>
             <div class="input-group mb-2 mb-sm-0">
                 <div class="input-group-addon">@</div>
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <input type="text" class="form-control" id="username" placeholder="Graphical.IO Email">
             </div>
         </div>
         <br />
         <div class="col-auto">
             <label class="sr-only" for="inlineFormInputGroup">Username</label>
             <div class="input-group mb-2 mb-sm-0">
-                <div class="input-group-addon">*</div>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <div class="input-group-addon">**</div>
+                <input type="password" class="form-control" id="password" placeholder="Graphical.IO Password">
             </div>
 
         </div>
 
         <div class="col-auto" style="float:right; margin:10px; margin-right:0px;">
-            <button type="button" id="Loginbtn" class="btn btn-danger">login</button>
+            <button type="button" id="Loginbtn" class="btn btn-warning">login</button>
         </div>
         <br />
 
@@ -127,7 +129,11 @@
             </div>
             <table></table>
             <br />
+            <button type="button" class="btn btn-xs btn-danger" style="float:left;margin-left: 10px">Clear all</button>
             <a id="showmore" title="Show more 5 "> show more 5 </a>
+
+            
+
             <a id="logout" style="float:right; padding:15px; padding-top:0px;" title="Logout">Logout</a>
 
         </div>

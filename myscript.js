@@ -30,7 +30,8 @@ function builtList() {
     chrome.storage.local.get('notif', function (result) {
         notif = result.notif;
 
-        for (i = count; i < count + 5 && i < notif.length; i++) {
+        for (i = count; i < count + 5 && i < notif.length; i++) 
+        {
             img = '';
             try {
                 img = notif[i].pic;
@@ -40,16 +41,22 @@ function builtList() {
             tr = "<tr> ";
             time = " <span class='time'> "+TimeProces( notif[i].createdAt)+"</span>";
 
-            tr += "<td><img width='40' src='" + img + "' ></td>";
-            tr += "<td>" + notProces (notif[i].notification)+"\t" + time+ "</td></tr>";
+            tr += "<td>"+'<input type="checkbox" value="">'+"</td>"+
+            "<td>"+"<img width='40' src='" + img + "' ></td>";
+            tr += "<td>" + notProces (notif[i].notification)+ 
+            '&nbsp;<button type="button" class="btn btn-xs btn-success" style="opacity:0.5">&crarr;</button>'
+            + "\t" + time+ "</td></tr>";
 
 
             $(".notifications table").append(tr);
             console.log(tr);
 
         }
+        
         count += 5;
-        if (count >= notif.length) {
+        
+        if (count >= notif.length) 
+        {
             $("#showmore").hide();
         }
     });
@@ -87,7 +94,7 @@ function login(user, pass) {
     Bage('');
     try {
         setTimeout(function () {
-            document.getElementById("massage").textContent = "valied username or password";
+            document.getElementById("massage").textContent = "Invalid Email or Password!";
             setTimeout(function () {
                 clearInterval(int);
             },50);
