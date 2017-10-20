@@ -17,9 +17,13 @@
     <script src="popup.js"></script>
 
     <style>
+        html,body {
+            max-height: 400px;
+            overflow-y: scroll;
+        } 
         body {
             width: 400px;
-            overflow-x:visible;
+            overflow-x: visible;
         }
 
         .login{
@@ -72,6 +76,10 @@
         .time{
             float:right;
             color:#999;
+            font-size:12px;
+        }
+        #logout {
+            color: #333;
         }
 
 
@@ -110,16 +118,21 @@
     </div>
 
     <div class="notifications" >
-        <div style="width:20%; float:right" >
-            <h5 id="logout" style="position:absolute; margin:2px;  margin-top:15px; float:right"  title="Logout" >Logout</h5>
-            <img width="60" id="refresh" style="position:absolute; margin:0; margin-left:30px; float:right" src="../icon/refresh.png" title="refresh" />
+        <div class="scroll">
+            <img width="40" id="refresh" style="position:relative;  " src="../icon/icon.png" title="refresh" />
+
+            <div style="width:20%; float:right">
+                <img width="60" id="refresh" style="position:relative; margin:0; margin-left:30px; float:right" src="../icon/refresh.png" title="refresh" />
+
+            </div>
+            <table></table>
+            <br />
+            <a id="showmore" title="Show more 5 "> show more 5 </a>
+            <a id="logout" style="float:right; padding:15px; padding-top:0px;" title="Logout">Logout</a>
 
         </div>
-        <br />
-        <br />
-        <table></table>
-        <br />
-        <a id="showmore"  title="Show more 5 "  > show more 5 </a>
+       
+ 
     </div>
    
 

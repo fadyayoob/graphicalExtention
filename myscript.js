@@ -10,7 +10,11 @@ function TimeProces(x)
 {
     value = x.replace("T", " ");
     value = value.split(":");
-    return value[0] + ":" + value[1];
+
+    value = value[0] + ":" + value[1];
+    value = value.split(" ");
+
+    return value[1] + " " + value[0];
 }
 
 function notProces(x) {
@@ -218,6 +222,7 @@ function logout() {
             chrome.storage.local.set({ 'pass': -1 }, function (result) {
                 chrome.storage.local.set({ 'siz': '' }, function (result) {
 
+                    location.reload();
 
                 });
             });
@@ -235,7 +240,7 @@ function BackRefresh() {
 
         chrome.storage.local.get('pass', function (result) {
             pass = result.pass;
-            if (user)
+            if (user && user!=-1)
                 loginN(user, pass);
         });
 

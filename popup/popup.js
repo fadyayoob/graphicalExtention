@@ -23,7 +23,6 @@ $(document).ready(function () {
 
     $("#logout").click(function () {
         logout();
-        location.reload();
     });
 
     $("#Loginbtn").click(function () {
