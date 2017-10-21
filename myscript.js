@@ -1,4 +1,5 @@
 var count = 0;
+<<<<<<< HEAD
 var N = 0;
 
 var ClearRequests = 0;
@@ -8,6 +9,10 @@ var notifyId = Array();
 
 
 function Bage(x) {
+=======
+function Bage(x) 
+{
+>>>>>>> 8d197b6666f4d724930ae3e065c263e06d8fff67
     x = "" + x;
     chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
 
@@ -22,11 +27,13 @@ function TimeProces(x)
     value = value[0] + ":" + value[1];
     value = value.split(" ");
 
-    return value[1] + " " + value[0];
+    return value[1] + "<br>" + value[0];
 }
 
-function notProces(x) {
-    if (x.length > 80) {
+function notProces(x) 
+{
+    if (x.length > 80) 
+    {
         value = x.substring(1, 80) + "...";
     }
     else
@@ -34,8 +41,10 @@ function notProces(x) {
     return value
 }
 
-function builtList() {
-    chrome.storage.local.get('notif', function (result) {
+function builtList() 
+{
+    chrome.storage.local.get('notif', function (result) 
+    {
         notif = result.notif;
 
 
@@ -44,18 +53,27 @@ function builtList() {
             N++;
             notifyId[i] = notif[i]._id;
             img = '';
-            try {
+            try 
+            {
                 img = notif[i].pic;
             }
-            catch (e) {
+            catch (e) 
+            {
             }
+            
             tr = "<tr> ";
             time = " <span class='time'> "+TimeProces( notif[i].createdAt)+"</span>";
 
+<<<<<<< HEAD
             tr += "<td>"+'<input type="checkbox" id='+"No."+i+' value="">'+"</td>"+
             "<td>"+"<img width='40' src='" + img + "' ></td>";
+=======
+            tr += "<td style='width:25px'>"+"<button type='button' class='btn btn-xs btn-warning clearnotification' data='"+
+            (notif[i]._id)+"'>x</button>"+"</td>"+
+            "<td style='width:50px'>"+"<img width='40' src='" + img + "' ></td>";
+>>>>>>> 8d197b6666f4d724930ae3e065c263e06d8fff67
             tr += "<td>" + notProces (notif[i].notification)+ 
-            '&nbsp;<button type="button" class="btn btn-xs btn-success" style="opacity:0.5">&crarr;</button>'
+            "&nbsp;<button type='button' class='respondnotification btn btn-xs btn-success' style='opacity:0.5'>&crarr;</button>"
             + "\t" + time+ "</td></tr>";
 
 
@@ -75,23 +93,29 @@ function builtList() {
 }
 
 
-function checkbuilt() {
-    chrome.storage.local.get('user', function (result) {
+function checkbuilt() 
+{
+    chrome.storage.local.get('user', function (result) 
+    {
         user = result.user;
 
 
-        if (user ) {
-            if (user != -1 ) {
+        if (user ) 
+        {
+            if (user != -1 ) 
+            {
                 $(".notifications").show();
                 $(".login").hide();
                 builtList();
             }
-            else {
+            else 
+            {
                 $(".notifications").hide();
                 $(".login").show();
             }
         }
-        else {
+        else 
+        {
             $(".notifications").hide();
             $(".login").show();
         }
@@ -100,20 +124,24 @@ function checkbuilt() {
     });
 }
 
-function login(user, pass) {
+function login(user, pass) 
+{
     var int = setInterval(function () { }, 500000);
     Bage('');
-    try {
-        setTimeout(function () {
+    try 
+    {
+        setTimeout(function () 
+        {
             document.getElementById("massage").textContent = "Invalid Email or Password!";
-            setTimeout(function () {
+            setTimeout(function () 
+            {
                 clearInterval(int);
             },50);
         }, 1000);
 
-
     }
-    catch (e) {
+    catch (e) 
+    {
 
     }
    
@@ -124,7 +152,7 @@ function login(user, pass) {
     var url = 'http://www.graphical.io/api/v1/users/'+user+'/notify.json';
     var params = 'pass=' + pass;
 
-    console.log(pass);
+    // console.log(pass);
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, true); // false for synchronous request
@@ -133,37 +161,45 @@ function login(user, pass) {
     xmlHttp.onreadystatechange = function () {
         
 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-
-            if (JSON.parse(xmlHttp.responseText)) {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
+        {
+            if (JSON.parse(xmlHttp.responseText)) 
+            {
 
                 var resa = JSON.parse(xmlHttp.responseText);
                 console.log(resa);
                 var siz = resa.length;
                 console.log(siz);
 
-                chrome.storage.local.set({ 'notif': resa }, function (result) {
+                chrome.storage.local.set({ 'notif': resa }, function (result) 
+                {
 
-                    chrome.storage.local.set({ 'user': user }, function (result) {
+                    chrome.storage.local.set({ 'user': user }, function (result) 
+                    {
 
-                        chrome.storage.local.set({ 'pass': pass }, function (result) {
-                            chrome.storage.local.set({ 'siz': siz }, function (result) {
+                        chrome.storage.local.set({ 'pass': pass }, function (result) 
+                        {
+                            chrome.storage.local.set({ 'siz': siz }, function (result) 
+                            {
                                 Bage(siz);
 
-                                try {
+                                try 
+                                {
                                     $(".notifications").show();
                                     $(".login").hide();
 
                                    // builtList();
                                     location.reload();
-                                   int= setInterval(function () { 
+                                    int= setInterval(function () 
+                                    { 
                                         document.getElementById("massage").textContent = "";
                                     }, 10);
 
 
                                    
                                 }
-                                catch(e) {
+                                catch(e) 
+                                {
 
                                 }
 
@@ -185,12 +221,9 @@ function login(user, pass) {
 
 }
 
-function loginN(user, pass) {
+function loginN(user, pass) 
+{
  
-
-
-
-
     var http = new XMLHttpRequest();
     var url = 'http://www.graphical.io/api/v1/users/' + user + '/notify.json';
     var params = 'pass=' + pass;
@@ -201,21 +234,26 @@ function loginN(user, pass) {
     xmlHttp.open("GET", url, true); // false for synchronous request
     xmlHttp.send(null);
 
-    xmlHttp.onreadystatechange = function () {
+    xmlHttp.onreadystatechange = function () 
+    {
 
 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
+        {
 
-            if (JSON.parse(xmlHttp.responseText)) {
+            if (JSON.parse(xmlHttp.responseText)) 
+            {
 
                 var resa = JSON.parse(xmlHttp.responseText);
                 console.log(resa);
                 var siz = resa.length;
                 console.log(siz);
 
-                chrome.storage.local.set({ 'notif': resa }, function (result) {
+                chrome.storage.local.set({ 'notif': resa }, function (result) 
+                {
 
                     Bage(siz);
+<<<<<<< HEAD
                  
                 });
 
@@ -263,10 +301,10 @@ function loginBtn(user, pass) {
                 chrome.storage.local.set({ 'notif': resa }, function (result) {
 
                     Bage(siz);
+=======
+>>>>>>> 8d197b6666f4d724930ae3e065c263e06d8fff67
                     location.reload();
                 });
-
-
 
 
             }
@@ -277,15 +315,20 @@ function loginBtn(user, pass) {
 
 }
 
-function logout() {
+function logout() 
+{
     Bage('');
 
-    chrome.storage.local.set({ 'notif': '' }, function (result) {
+    chrome.storage.local.set({ 'notif': '' }, function (result) 
+    {
 
-        chrome.storage.local.set({ 'user': -1 }, function (result) {
+        chrome.storage.local.set({ 'user': -1 }, function (result) 
+        {
 
-            chrome.storage.local.set({ 'pass': -1 }, function (result) {
-                chrome.storage.local.set({ 'siz': '' }, function (result) {
+            chrome.storage.local.set({ 'pass': -1 }, function (result) 
+            {
+                chrome.storage.local.set({ 'siz': '' }, function (result) 
+                {
 
                     location.reload();
 
@@ -298,12 +341,15 @@ function logout() {
 }
 
 
-function BackRefresh() {
-    chrome.storage.local.get('user', function (result) {
+function BackRefresh() 
+{
+    chrome.storage.local.get('user', function (result) 
+    {
         user = result.user;
 
 
-        chrome.storage.local.get('pass', function (result) {
+        chrome.storage.local.get('pass', function (result) 
+        {
             pass = result.pass;
             if (user && user!=-1)
                 loginN(user, pass);
@@ -314,6 +360,7 @@ function BackRefresh() {
 }
 
 
+<<<<<<< HEAD
 function BtnRefresh() {
     chrome.storage.local.get('user', function (result) {
         user = result.user;
@@ -323,17 +370,44 @@ function BtnRefresh() {
             pass = result.pass;
             if (user && user != -1)
                 loginBtn(user, pass);
+=======
+
+function clearAll() 
+{
+    chrome.storage.local.get('user', function (result) 
+    {
+        user = result.user;
+
+
+        chrome.storage.local.get('pass', function (result) 
+        {
+            pass = result.pass;
+            if (user && user!=-1)
+                clearAllNotifications(user, pass);
+>>>>>>> 8d197b6666f4d724930ae3e065c263e06d8fff67
         });
 
 
     });
 }
 
+<<<<<<< HEAD
 function sendclearAPI(url) {
+=======
+function clearAllNotifications(user, pass) 
+{
+ 
+    var http = new XMLHttpRequest();
+    var url = 'http://www.graphical.io/api/v1/users/' + user + '/clrallnotify.json';
+    var params = 'pass=' + pass;
+
+   // console.log(pass);
+>>>>>>> 8d197b6666f4d724930ae3e065c263e06d8fff67
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, true); // false for synchronous request
     xmlHttp.send(null);
+<<<<<<< HEAD
     ClearRequests++;
     $('.notifications').hide();
 
@@ -375,3 +449,27 @@ function clearChecked() {
 
     });
 }
+=======
+
+    xmlHttp.onreadystatechange = function () 
+    {
+
+
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
+        {
+
+            if (JSON.parse(xmlHttp.responseText)) 
+            {
+
+                var resa = JSON.parse(xmlHttp.responseText);
+                console.log(resa);
+
+            }
+
+            BackRefresh();
+        }
+    }
+
+}
+
+>>>>>>> 8d197b6666f4d724930ae3e065c263e06d8fff67
