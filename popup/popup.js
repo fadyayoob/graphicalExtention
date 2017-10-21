@@ -11,14 +11,15 @@ function saveLogin() {
 $(document).ready(function () {
     $(".notifications").show();
     $(".login").show();
+    $('.Loader').hide();
     checkbuilt();
     $("#showmore").click(function () {
         builtList();
     });
 
     $("#refresh").click(function () {
-        BackRefresh();
-        location.reload();
+        BtnRefresh();
+      //  setTimeout(function () { location.reload();}, 1000);
     });
 
     $("#logout").click(function () {
@@ -26,7 +27,10 @@ $(document).ready(function () {
     });
 
     $("#Loginbtn").click(function () {
-       // document.getElementById("massage").textContent = "valied username or password";
         saveLogin();
     });
+
+    $('#clearChecked').click(function () {
+        clearChecked();
+       });
 });

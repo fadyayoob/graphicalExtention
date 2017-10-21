@@ -1,4 +1,12 @@
 var count = 0;
+var N = 0;
+
+var ClearRequests = 0;
+var clearRecives = 0;
+
+var notifyId = Array();
+
+
 function Bage(x) {
     x = "" + x;
     chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
@@ -30,8 +38,11 @@ function builtList() {
     chrome.storage.local.get('notif', function (result) {
         notif = result.notif;
 
+
         for (i = count; i < count + 5 && i < notif.length; i++) 
         {
+            N++;
+            notifyId[i] = notif[i]._id;
             img = '';
             try {
                 img = notif[i].pic;
@@ -41,7 +52,7 @@ function builtList() {
             tr = "<tr> ";
             time = " <span class='time'> "+TimeProces( notif[i].createdAt)+"</span>";
 
-            tr += "<td>"+'<input type="checkbox" value="">'+"</td>"+
+            tr += "<td>"+'<input type="checkbox" id='+"No."+i+' value="">'+"</td>"+
             "<td>"+"<img width='40' src='" + img + "' ></td>";
             tr += "<td>" + notProces (notif[i].notification)+ 
             '&nbsp;<button type="button" class="btn btn-xs btn-success" style="opacity:0.5">&crarr;</button>'
@@ -205,7 +216,54 @@ function loginN(user, pass) {
                 chrome.storage.local.set({ 'notif': resa }, function (result) {
 
                     Bage(siz);
+                 
+                });
 
+
+
+
+            }
+
+
+        }
+    }
+
+}
+
+function loginBtn(user, pass) {
+
+
+
+
+    $('.notifications').hide();
+    $('.Loader').show();
+
+    var http = new XMLHttpRequest();
+    var url = 'http://www.graphical.io/api/v1/users/' + user + '/notify.json';
+    var params = 'pass=' + pass;
+
+    // console.log(pass);
+
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", url, true); // false for synchronous request
+    xmlHttp.send(null);
+
+    xmlHttp.onreadystatechange = function () {
+
+
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+
+            if (JSON.parse(xmlHttp.responseText)) {
+
+                var resa = JSON.parse(xmlHttp.responseText);
+                console.log(resa);
+                var siz = resa.length;
+                console.log(siz);
+
+                chrome.storage.local.set({ 'notif': resa }, function (result) {
+
+                    Bage(siz);
+                    location.reload();
                 });
 
 
@@ -250,6 +308,69 @@ function BackRefresh() {
             if (user && user!=-1)
                 loginN(user, pass);
         });
+
+
+    });
+}
+
+
+function BtnRefresh() {
+    chrome.storage.local.get('user', function (result) {
+        user = result.user;
+
+
+        chrome.storage.local.get('pass', function (result) {
+            pass = result.pass;
+            if (user && user != -1)
+                loginBtn(user, pass);
+        });
+
+
+    });
+}
+
+function sendclearAPI(url) {
+
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", url, true); // false for synchronous request
+    xmlHttp.send(null);
+    ClearRequests++;
+    $('.notifications').hide();
+
+    $('.Loader').show();
+
+
+    xmlHttp.onreadystatechange = function () {
+
+
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+
+            clearRecives++;
+            if (clearRecives == ClearRequests) {
+
+                refresh.click();
+            }
+        }
+    }
+
+
+}
+
+function clearChecked() {
+    chrome.storage.local.get('user', function (result) {
+        user = result.user;
+
+        for (i = 0; i < N; i++) {
+
+            var states = document.getElementById('No.' + i).checked;
+
+            if (states) {
+                
+                var url = 'http://www.graphical.io/api/v1/users/' + user + '/' + notifyId[i] + '/clearnotify.json';
+                sendclearAPI(url);
+            }
+        }
+
 
 
     });

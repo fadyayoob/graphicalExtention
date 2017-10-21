@@ -81,6 +81,16 @@
         #logout {
             color: #333;
         }
+        .loader {
+            position:absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            opacity: 0.7;
+            position: absolute;
+            z-index: 9999;
+        }
+
 
 
     </style>
@@ -88,9 +98,11 @@
 
 <body>
 
+
+
     <div class="login" >
         <br />
-        <img height="100px" id="refresh" style="position:relative;  " src="../icon/icon.png" title="refresh" />
+        <img height="100"  style="position:relative;  " src="../icon/icon.png" />
         <br />
         <h4 style="color: gray">Login</h4>
         <h4 style="color:red" id="massage" ></h4>
@@ -129,6 +141,7 @@
             </div>
             <table></table>
             <br />
+            <button type="button" id="clearChecked" class="btn btn-xs btn-success" style="float:left;margin-left: 10px">Clear checked</button>
             <button type="button" class="btn btn-xs btn-danger" style="float:left;margin-left: 10px">Clear all</button>
             <a id="showmore" title="Show more 5 "> show more 5 </a>
 
@@ -139,6 +152,10 @@
         </div>
        
  
+    </div>
+
+    <div class="Loader">
+        <center><img wi src="../icon/loader.gif"></center>
     </div>
    
 
